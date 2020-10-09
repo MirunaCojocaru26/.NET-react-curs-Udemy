@@ -52,7 +52,7 @@ class ActivityStore {
       } else {
         this.loadingInitial = true;
         try {
-          activity = await agent.Activities.details(id)
+          activity = await agent.Activities.details(id);
           runInAction('get activity',() => {
             this.activity = activity;
             this.loadingInitial = false;
