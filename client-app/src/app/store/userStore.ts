@@ -3,8 +3,6 @@ import {IUser, IUserFormValues} from '../models/user';
 import agent from '../api/agent';
 import {RootStore} from './rootStore';
 import { history } from '../..';
-import { Console } from 'console';
-import { register } from '../../serviceWorker';
  
 export default class UserStore{
     rootStore: RootStore;
