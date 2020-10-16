@@ -2,18 +2,21 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Activities;
+using Domain;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace API.Controllers
 {
     public class ActivitiesController : BaseController
     {
         [HttpGet]
-        public async Task<ActionResult<List.ActivitiesEnvelope>> List(int? limit, int? offset)
+        public async Task<ActionResult<List.ActivitiesEnvelope>> List(int? limit, int? offset, bool isGoing,
+            bool isHost, DateTime? startDate)
         {
-            return await Mediator.Send(new List.Query(limit, offset));
+            return await Mediator.Send(new List.Query(limit, offset, isGoing, isHost, startDate));
         }
 
         [HttpGet("{id}")]
