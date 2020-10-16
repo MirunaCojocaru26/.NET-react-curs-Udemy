@@ -1,6 +1,6 @@
 import React, { Fragment, useContext, useEffect } from 'react';
 import { Segment, Header, Form, Button, Comment } from 'semantic-ui-react';
-import { RootStoreContext } from '../../../app/store/rootStore';
+import { RootStoreContext } from '../../../app/stores/rootStore';
 import {Form as FinalForm, Field} from 'react-final-form';
 import { Link } from 'react-router-dom';
 import TextAreaInput from '../../../app/common/form/TextAreaInput';
@@ -9,10 +9,15 @@ import {formatDistance} from 'date-fns';
 
 const ActivityDetailedChat = () => {
   const rootStore = useContext(RootStoreContext);
-  const {createHubConnection, stopHubConnection, addComment, activity} = rootStore.activityStore;
+  const {
+    createHubConnection,
+    stopHubConnection,
+    addComment,
+    activity
+  } = rootStore.activityStore;
 
   useEffect(() => {
-    createHubConnection(activity!.id);
+    createHubConnection();
     return () => {
       stopHubConnection();
     }
@@ -20,7 +25,13 @@ const ActivityDetailedChat = () => {
 
   return (
     <Fragment>
-      <Segment textAlign='center' attached='top' inverted color='teal' style={{ border: 'none' }} >
+      <Segment
+        textAlign='center'
+        attached='top'
+        inverted
+        color='teal'
+        style={{ border: 'none' }}
+      >
         <Header>Chat about this event</Header>
       </Segment>
       <Segment attached>
@@ -42,9 +53,20 @@ const ActivityDetailedChat = () => {
             onSubmit={addComment}
             render={({handleSubmit, submitting, form}) => (
               <Form onSubmit={() => handleSubmit()!.then(() => form.reset())}>
-                <Field name='body' component={TextAreaInput} rows={2} placeholder='Add your comment'/>
-                <Button loading={submitting} content='Add Reply' labelPosition='left' icon='edit' primary />
-              </Form>
+              <Field 
+                name='body'
+                component={TextAreaInput}
+                rows={2}
+                placeholder='Add your comment'
+              />
+              <Button
+                loading={submitting}
+                content='Add Reply'
+                labelPosition='left'
+                icon='edit'
+                primary
+              />
+            </Form>
             )}
           />
 

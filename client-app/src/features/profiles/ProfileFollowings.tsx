@@ -1,11 +1,16 @@
 import React, { useContext } from 'react';
 import { Tab, Grid, Header, Card } from 'semantic-ui-react';
-import { RootStoreContext } from '../../app/store/rootStore';
+import { RootStoreContext } from '../../app/stores/rootStore';
 import ProfileCard from './ProfileCard';
 
 const ProfileFollowings = () => {
   const rootStore = useContext(RootStoreContext);
-  const { profile, followings, loading, activeTab } = rootStore.profileStore;
+  const {
+    profile,
+    followings,
+    loading,
+    activeTab
+  } = rootStore.profileStore;
 
   return (
     <Tab.Pane loading={loading}>

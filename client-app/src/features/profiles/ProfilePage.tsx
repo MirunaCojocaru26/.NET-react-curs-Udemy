@@ -3,7 +3,7 @@ import { Grid } from 'semantic-ui-react';
 import ProfileHeader from './ProfileHeader';
 import ProfileContent from './ProfileContent';
 import { RouteComponentProps } from 'react-router';
-import { RootStoreContext } from '../../app/store/rootStore';
+import { RootStoreContext } from '../../app/stores/rootStore';
 import LoadingComponent from '../../app/layout/LoadingComponent';
 import { observer } from 'mobx-react-lite';
 
@@ -15,7 +15,15 @@ interface IProps extends RouteComponentProps<RouteParams> {}
 
 const ProfilePage: React.FC<IProps> = ({ match }) => {
   const rootStore = useContext(RootStoreContext);
-  const {loadingProfile, profile, loadProfile, follow, unfollow, isCurrentUser, loading, setActiveTab
+  const {
+    loadingProfile,
+    profile,
+    loadProfile,
+    follow,
+    unfollow,
+    isCurrentUser,
+    loading,
+    setActiveTab
   } = rootStore.profileStore;
 
   useEffect(() => {
